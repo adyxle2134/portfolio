@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adamya Pratik | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght=0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(180deg, #241a5f 0%, #120e2e 100%);
+            --text-color: #ffffff;
+            --accent-orange: #fbb03b;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-hover: rgba(255, 255, 255, 0.07);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        section {
+            padding: 7rem 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- Global Scrollspy Circles (Fixed Sidebar) --- */
+        .scrollspy-sidebar {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 100;
+        }
+
+        .spy-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            display: block;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .spy-dot.active {
+            background: #ffffff;
+            box-shadow: 0 0 14px 5px rgba(255, 255, 255, 0.5);
+            transform: scale(1.3);
+        }
+
+       /* --- Header Navigation (Updated to match image_ca533f.png) --- */
+header {
+    display: flex;
+    justify-content: center; /* Perfectly centers the nav links across the viewport */
+    align-items: center;
+    padding: 2.2rem 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #5449cb; /* Matching the vibrant purple/blue tone from your image */
+    width: 115px;
+    height: 100px;
+    padding-left: 1.5rem;
+    padding-top: 1.8rem;
+    border-bottom-right-radius: 100%; /* Forms the smooth circular sweep shape */
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    line-height: 1;
+}
+
+nav {
+    display: flex;
+    gap: 4.5rem; /* Spacious link gaps matching your image */
+}
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            opacity: 0.75;
+            transition: opacity 0.3s ease;
+            font-weight: 400;
+        }
+
+        nav a:hover {
+            opacity: 1;
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            padding-top: 8rem;
+            position: relative;
+        }
+
+        .hero-bg-text-container {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 48%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 3.5rem;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-bg-text {
+            font-size: 7.5rem;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            white-space: nowrap;
+            letter-spacing: 3px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-display {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 500px;
+        }
+
+        .hero-img-wrapper {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            z-index: 2;
+        }
+
+        .hero-img {
+            max-height: 480px;
+            display: block;
+            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+        }
+
+        .hero-overlay-left {
+            position: relative;
+            z-index: 3;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-overlay-left h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .explore-btn {
+            display: block;
+            background: linear-gradient(90deg, #3d3393 0%, #4a3cb5 100%);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 3rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .explore-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(61, 51, 147, 0.4);
+        }
+
+        .hero-overlay-right {
+            position: relative;
+            display: flex;
+            gap: 1rem;
+            z-index: 3;
+            margin-bottom: 2.5rem;
+        }
+
+        .social-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .social-icon:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        /* --- About Section --- */
+        .grid-split {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 6rem;
+            width: 100%;
+            align-items: start;
+        }
+
+        .about-tag {
+            color: var(--accent-orange);
+            font-size: 1rem;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .about-main-text {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .about-main-text em {
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .about-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            padding-top: 2.5rem;
+        }
+
+        /* --- Applications Section --- */
+        .apps-wrapper {
+            width: 100%;
+        }
+
+        .section-title-center {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 3.5rem;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .app-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-3px);
+        }
+
+        .app-icon {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .app-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Recent Work Section --- */
+        .works-wrapper {
+            width: 100%;
+        }
+
+        .section-title-left {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 10px;
+            margin-bottom: 3rem;
+            display: inline-block;
+        }
+
+        .work-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .work-card {
+            background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.2rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .work-card:hover {
+            background: linear-gradient(90deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            transform: translateY(-2px);
+        }
+
+        .work-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .work-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .work-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .work-meta {
+            font-size: 1.1rem;
+            opacity: 0.75;
+            font-weight: 300;
+            transition: opacity 0.3s;
+        }
+
+        .work-card:hover .work-meta {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* --- Gigs Section --- */
+        .gigs-wrapper {
+            width: 100%;
+        }
+
+        #gigs .section-title-left {
+            color: var(--accent-orange);
+            text-decoration-color: var(--accent-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .sub-heading {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .gigs-flex {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .gig-button {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            color: white;
+            text-align: center;
+            padding: 1.2rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .gig-button:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 4rem 0 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.8rem;
+        }
+
+        .footer-contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s, transform 0.2s;
+        }
+
+        .contact-item:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+        }
+
+        .contact-item svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: var(--accent-orange);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .back-to-top {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            opacity: 0.5;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: opacity 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .back-to-top:hover {
+            opacity: 1;
+        }
+
+        /* --- Responsive Breakpoints --- */
+        @media (max-width: 1024px) {
+            .hero-bg-text { font-size: 5.5rem; }
+            .grid-split { grid-template-columns: 1fr; gap: 2rem; }
+            .about-description { padding-top: 0; }
+            .hero-img { max-height: 400px; }
+            .hero-display { height: 420px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-bg-text { font-size: 3.8rem; }
+            .hero-bg-text-container { gap: 1.5rem; }
+            .apps-grid { grid-template-columns: 1fr; }
+            .hero-overlay-right { display: none; }
+            .scrollspy-sidebar { right: 20px; }
+            
+            .work-card { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+            .work-meta { padding-left: 4.8rem; }
+            .gigs-flex { flex-direction: column; gap: 1rem; }
+            .header { padding: 1.5rem 0; justify-content: flex-end; }
+            .logo { width: 95px; height: 80px; padding-left: 1.2rem; padding-top: 1.4rem; font-size: 1.2rem; }
+            .nav { padding-right: 80px; gap: 1.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-bg-text { display: none; }
+            .hero-img-wrapper { position: relative; left: 0; transform: none; margin: 0 auto; }
+            .hero-display { flex-direction: column; align-items: center; height: auto; gap: 2rem; }
+            .hero-overlay-left { text-align: center; margin-bottom: 0; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scrollspy-sidebar">
+        <a href="#home" class="spy-dot active" title="Home"></a>
+        <a href="#about" class="spy-dot" title="About"></a>
+        <a href="#works" class="spy-dot" title="Works"></a>
+        <a href="#gigs" class="spy-dot" title="Gigs"></a>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">AP.</div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#works">Works</a>
+                <a href="#gigs">Gigs</a>
+            </nav>
+        </header>
+    </div>
+
+    <section id="home">
+        <div class="hero-bg-text-container">
+            <div class="hero-bg-text">//ADAMYA PRATIK</div>
+            <div class="hero-bg-text">//ADAMYA PRATIK</div>
+        </div>
+
+        <div class="container" style="width: 100%;">
+            <div class="hero-display">
+                <div class="hero-overlay-left">
+                    <h2>PORTFOLIO</h2>
+                    <button class="explore-btn" onclick="document.getElementById('about').scrollIntoView();">Explore</button>
+                </div>
+
+                <div class="hero-img-wrapper">
+                    <img src="adam.png" alt="Adamya Pratik Cutout Layout" class="hero-img">
+                </div>
+
+                <div class="hero-overlay-right">
+                    
+                    <a href="https://www.youtube.com/@Mindsetu-o7d" class="social-icon">YT</a>
+                    <a href="https://www.instagram.com/mindsetu_org/" class="social-icon">IG</a>
+                    <a href="https://www.linkedin.com/in/adamya-pratik-undefined-536945383/" class="social-icon">in</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="grid-split">
+                <div>
+                    <span class="about-tag">About me</span>
+                    <h1 class="about-main-text">Two-in-one package of a <em>humanitarian</em> and a <em>developer</em></h1>
+                </div>
+                <div class="about-description">
+                    <p>I'm <strong>Adamya Pratik</strong>, an aspiring lawyer and a <strong>humanitarian</strong>. I make and design <strong>cutting-edge websites</strong> for <strong>businesses</strong> and <strong>individuals</strong>. <br><br>I am also a <strong>cofounder</strong> of an unregistered <strong>non-profit</strong> named <strong>mindsetu</strong> which aims to <strong>improve</strong> the <strong>mental health</strong> of <strong>impoverished kids</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apps">
+        <div class="container apps-wrapper">
+            <h2 class="section-title-center">Applications used by me</h2>
+            <div class="apps-grid">
+                <div class="app-card">
+                    <img src="Figma.png" alt="Figma" class="app-icon">
+                    <span class="app-name">Figma</span>
+                </div>
+                <div class="app-card">
+                    <img src="vs.png" alt="VS Code" class="app-icon">
+                    <span class="app-name">VS Code</span>
+                </div>
+                <div class="app-card">
+                    <img src="Photoshop.png" alt="Photoshop" class="app-icon">
+                    <span class="app-name">Photoshop</span>
+                </div>
+                <div class="app-card">
+                    <img src="Wordpress.png" alt="Wordpress" class="app-icon">
+                    <span class="app-name">Wordpress</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="works">
+        <div class="container works-wrapper">
+            <h2 class="section-title-left">Recent Work</h2>
+            <div class="work-list">
+                <a href="https://mindsetu.online" target="_blank" class="work-card">
+                    <div class="work-left">
+                        <img src="mindsetu.png" alt="Mindsetu" class="work-logo">
+                        <span class="work-title">Mindsetu</span>
+                    </div>
+                    <span class="work-meta">https://mindsetu.online</span>
+                </a>
+                <a href="" target="_blank" class="work-card">
+                    <div class="work-left">
+                        <img src="shinenglow.png" alt="Shine n Glow" class="work-logo">
+                        <span class="work-title">Shine n Glow</span>
+                    </div>
+                    <span class="work-meta">In progress</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="gigs">
+        <div class="container gigs-wrapper">
+            <h2 class="section-title-left">Gigs</h2>
+            <h3 class="sub-heading">Support me on</h3>
+            <div class="gigs-flex">
+                <a href="#" class="gig-button">Fiverr</a>
+                <a href="#" class="gig-button">Fiverr</a>
+            </div>
+        </div>
+    </section>
+
+   <!-- Footer Area with New Interactive Contacts -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-contact-info">
+                <!-- Email Link with SVG Icon -->
+                <a href="mailto:adamyapratik12@gmail.com" class="contact-item">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    adamyapratik12@gmail.com
+                </a>
+                
+                <!-- Phone Link with SVG Icon -->
+                <a href="tel:+919217176658" class="contact-item">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    +91 9217176658
+                </a>
+            </div>
+
+            <a href="#home" class="back-to-top">
+                ▲ Back to top
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const trackSections = document.querySelectorAll('#home, #about, #works, #gigs');
+            const spyDots = document.querySelectorAll('.spy-dot');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-30% 0px -50% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const activeId = entry.target.getAttribute('id');
+                        
+                        spyDots.forEach(dot => {
+                            if (dot.getAttribute('href') === `#${activeId}`) {
+                                dot.classList.add('active');
+                            } else {
+                                dot.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            trackSections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>

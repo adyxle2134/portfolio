@@ -131,18 +131,32 @@ nav {
         }
 
         .hero-bg-text-container {
-            position: absolute;
-            width: 100%;
-            left: 0;
-            top: 48%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 3.5rem;
-            pointer-events: none;
-            z-index: 1;
-        }
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 48%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem; /* Vertical spacing between the two lines */
+    pointer-events: none;
+    z-index: 1;
+    padding: 0 4.5rem; /* Prevents the text from hitting the absolute outer edge of the display */
+    box-sizing: border-box;
+}
 
+.hero-bg-row {
+    display: flex;
+    justify-content: space-between; /* Flawlessly splits Adamya to the left and Pratik to the right */
+    width: 100%;
+    font-size: 7.5rem;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.28); /* Crisp outline matching image_e5ef82.png */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    white-space: nowrap;
+}
         .hero-bg-text {
             font-size: 7.5rem;
             font-weight: 900;
@@ -553,11 +567,16 @@ nav {
     </div>
 
     <section id="home">
-        <div class="hero-bg-text-container">
-            <div class="hero-bg-text">//ADAMYA PRATIK</div>
-            <div class="hero-bg-text">//ADAMYA PRATIK</div>
-        </div>
-
+       <div class="hero-bg-text-container">
+    <div class="hero-bg-row">
+        <span>ADAMYA</span>
+        <span>PRATIK</span>
+    </div>
+    <div class="hero-bg-row">
+        <span>ADAMYA</span>
+        <span>PRATIK</span>
+    </div>
+</div>
         <div class="container" style="width: 100%;">
             <div class="hero-display">
                 <div class="hero-overlay-left">
